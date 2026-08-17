@@ -1,0 +1,21 @@
+// Priors file for two consecutive bottlenecks model
+[PARAMETERS]
+//#isInt? #name             #dist.#min  #max
+1        NCUR               unif  500    100000   output
+1        NBOT2              unif  50     50000    output
+1        NINTER             unif  100    100000   output
+1        NBOT1              unif  50     50000    output
+1        NANC               unif  500    200000   output
+1        TRECENT_RECOVERY   unif  10     1000     output
+1        GAP_RBOT           unif  1      3000     output
+1        GAP_OREC           unif  1      8000     output
+1        GAP_OBOT           unif  1      20000    output
+
+[COMPLEX PARAMETERS]
+1 TRECENT_BOT = TRECENT_RECOVERY + GAP_RBOT output
+1 TOLD_RECOVERY = TRECENT_BOT + GAP_OREC output
+1 TOLD_BOT = TOLD_RECOVERY + GAP_OBOT output
+0 RESIZE_BOT2 = NBOT2/NCUR output
+0 RESIZE_INTER = NINTER/NBOT2 output
+0 RESIZE_BOT1 = NBOT1/NINTER output
+0 RESIZE_ANC = NANC/NBOT1 output

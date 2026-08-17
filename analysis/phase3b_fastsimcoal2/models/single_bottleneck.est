@@ -1,0 +1,13 @@
+// Priors file for single bottleneck model
+[PARAMETERS]
+//#isInt? #name       #dist.#min  #max
+1        NCUR         unif  500    100000   output
+1        NBOT         unif  50     50000    output
+1        NANC         unif  500    200000   output
+1        TRECOVERY    unif  10     3000     output
+1        GAP_BOT      unif  1      17000    output
+
+[COMPLEX PARAMETERS]
+1 TBOT = TRECOVERY + GAP_BOT output
+0 RESIZEBOT = NBOT/NCUR output
+0 RESIZEANC = NANC/NBOT output

@@ -1,0 +1,13 @@
+order,module,entry_point,role,manuscript_items
+1,annotation,analysis/phase2_annotation/phase2_step0_annotation_pipeline.sh,"Ancestral states; SnpEff; functional annotation","Supp. Fig. S2; Table S12"
+2,population_genomics,analysis/phase3a_population_genomics/phase3a_population_genomics_pipeline.sh,"PCA; diversity; LD; ROH","Fig. 2b-d; Supp. Figs S1/S3; Tables S1/S2"
+3,demography,analysis/phase3b_fastsimcoal2/run_complete_pipeline.sh,"Unfolded SFS; fastsimcoal2; bootstrap","Fig. 6a-c; Supp. Fig. S4; Tables S8/S9"
+4,plm_scoring,analysis/phase4_plm_predictions/phase4_step0_plm_pipeline.sh,"ESM-2 missense scoring","Fig. 3a; Supp. Fig. S5; Table S3"
+5,genetic_load,analysis/phase5_genetic_load/phase5_step0_genetic_load_pipeline.sh,"Dominance-aware individual and population load","Supp. Figs S6/S7; Table S4"
+6,phenotype_gwas,analysis/phase8_phenotype_genotype_analysis/phase8_step0_genotype_phenotype_analysis.py,"CHS; correlations; case-control; GWAS","Fig. 4a/c; Supp. Figs S8/S15; Tables S6/S11"
+7,method_validation,analysis/phase9_method_validation/run_all_validation.sh,"ClinVar; transfer; sensitivity; GRM criterion; DFE simulation","Figs 3b-c/4b,d/6d; Supp. Figs S9-S14; Tables S5/S10"
+8,publication_figures,figures_tables/run_all_figures.py,"Redraw Figs 2-6 and Supp. Figs S1-S16","Figs 2-6; Supp. Figs S1-S16"
+9,publication_tables,figures_tables/regenerate_tables.py;figures_tables/export_supplementary_tables_xlsx.py,"Polarized DAF tables; Excel workbook","Tables S1-S12"
+10,burden_gene_enrichment,figures_tables/plot_supplementary.py,"S16 redraw from analysis-root works/enrichment/","Supp. Fig. S16"
+shared,utilities,analysis/utils.py;analysis/utils.R;analysis/config.yaml,"Shared helpers and configuration","multiple"
+manual,figure1,none,"Study schematic","Fig. 1"

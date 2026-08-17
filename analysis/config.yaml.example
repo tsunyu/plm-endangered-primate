@@ -1,0 +1,157 @@
+# Example configuration — copy to config.yaml and edit paths.
+# Placeholders /path/to/analysis_root are expanded from PLM_BASE_DIR
+# (export it, or run: bash configure_base_dir.sh /path/to/analysis_root).
+# Analysis scripts live in this repository under analysis/, not on the analysis root.
+
+# Configuration File for Golden Snub-Nosed Monkey Inbreeding Analysis
+# Shennongjia Population - Rhinopithecus roxellana
+
+# ============================================================================
+# PROJECT PATHS
+# ============================================================================
+project:
+  base_dir: "/path/to/analysis_root"
+  data_dir: "/path/to/analysis_root/data"
+  output_dir: "/path/to/analysis_root/output"
+  temp_dir: "/path/to/analysis_root/temp"
+
+# Input files
+input:
+  plink_prefix: "/path/to/analysis_root/data/monkey_snp_sex_qc"
+  vcf: "/path/to/analysis_root/data/monkey_snp_sex_qc.vcf"
+  autosome_vcf: "/path/to/analysis_root/data/hardfilted.snp.pass.autosomes.vcf.gz"
+  phenotype_table: "/path/to/analysis_root/data/disease_record_noredundancy.csv"
+  reference_genome: "/path/to/Rrox_reference.fa"  # UPDATE THIS PATH
+  gene_annotation_gff: "/path/to/Rrox_genes.gff3"  # UPDATE THIS PATH
+  gene_annotation_gtf: "/path/to/Rrox_genes.gtf"   # UPDATE THIS PATH
+  protein_sequences: "/path/to/Rrox_proteins.fa"   # UPDATE THIS PATH
+
+# Outgroup genomes for ancestral state inference
+outgroups:
+  primary: "/path/to/Pygathrix_nemaeus.fa"         # UPDATE THIS PATH
+  secondary: "/path/to/Rhinopithecus_bieti.fa"     # UPDATE THIS PATH
+  tertiary: "/path/to/Macaca_mulatta.fa"           # UPDATE THIS PATH
+
+# ============================================================================
+# SPECIES PARAMETERS
+# ============================================================================
+species:
+  name: "Rhinopithecus roxellana"
+  common_name: "Golden snub-nosed monkey"
+  population: "Shennongjia"
+  census_size: 1200
+  generation_time: 10  # years; used in phase3b fastsimcoal2 analyses
+  genome_size: 2800000000  # 2.8 Gb
+  coding_sequence_size: 30000000  # 30 Mb
+  num_autosomes: 22
+  mutation_rate: 1.36e-8  # per bp per generation (fastsimcoal2)
+  recombination_rate: 1.2e-8  # per bp per generation
+
+# ============================================================================
+# POPULATION GENOMICS PARAMETERS (phase 3a)
+# ============================================================================
+phase2:
+  roh:
+    min_snps: 30
+    min_length_kb: 100
+    max_het_calls: 1
+    max_missing_calls: 5
+    max_gap_kb: 1000
+    window_snps: 50
+    short_min: 100000
+    short_max: 1000000
+    medium_min: 1000000
+    medium_max: 5000000
+    long_min: 5000000
+
+  diversity:
+    window_size: 100000  # 100 kb windows for pi
+    window_step: 50000   # 50 kb step
+    tajima_d_window: 100000
+
+  structure:
+    pca_components: 10
+    kinship_threshold: 0.0884  # 1st/2nd degree relatives
+    ibd_min_length_cm: 1.0
+
+  fastsimcoal:
+    num_simulations: 100000
+    min_ne: 50
+    max_ne: 50000
+    bottleneck_time_min: 10
+    bottleneck_time_max: 1000
+    num_bootstraps: 100
+
+# ============================================================================
+# ANNOTATION PARAMETERS (phase 2)
+# ============================================================================
+phase3:
+  ancestral:
+    min_outgroups_agree: 2  # minimum outgroups with same allele
+    min_alignment_quality: 20
+    min_coverage: 5
+
+  snpeff:
+    version: "5.1"
+    upstream_downstream: 5000
+    splice_site_size: 2
+    config_file: "snpEff.config"
+
+# ============================================================================
+# PROTEIN LANGUAGE MODEL PARAMETERS (phase 4: ESM-2 only)
+# ============================================================================
+phase4:
+  esm2:
+    model_name: "esm2_t33_650M_UR50D"
+    batch_size: 32
+    device: "cuda"
+  deleterious_percentile: 10  # top 10% most deleterious missense
+
+# ============================================================================
+# GENETIC LOAD PARAMETERS (phase 5)
+# ============================================================================
+phase5:
+  missense_sigmoid:
+    k: 0.5287
+    x0: -6.8920
+  top_decile_pathogenicity: 0.612
+  lof_pathogenicity: 0.95
+  dominance_h: 0.25
+
+# ============================================================================
+# COMPUTATIONAL RESOURCES
+# ============================================================================
+resources:
+  num_threads: 16
+  max_memory_gb: 64
+  gpu:
+    device_id: 0
+    memory_gb: 40
+  cluster:
+    use_slurm: false
+    partition: "compute"
+    time_limit: "48:00:00"
+    email: "user@institution.edu"  # UPDATE THIS
+
+# ============================================================================
+# SOFTWARE (commands expected on PATH unless overridden)
+# ============================================================================
+software:
+  plink: "plink"
+  plink2: "plink2"
+  bcftools: "bcftools"
+  vcftools: "vcftools"
+  king: "king"
+  fastsimcoal2: "fsc28"
+  snpeff: "snpEff"
+  slim: "slim"
+  python: "python3"
+  rscript: "Rscript"
+
+# ============================================================================
+# LOGGING
+# ============================================================================
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"

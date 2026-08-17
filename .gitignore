@@ -1,0 +1,83 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+.env
+.Rhistory
+.RData
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Analysis root products (this repository is code-only)
+# If a local analysis root is created inside the clone, do not commit it.
+data/
+output/
+works/
+
+# Supp. Fig. S16 g:Profiler tables belong on the analysis root, not here.
+# figures_tables/enrichment/README.md is documentation and is tracked.
+figures_tables/enrichment/*.csv
+figures_tables/enrichment/*.txt
+
+# Genotypes / phenotypes / indexes
+*.vcf
+*.vcf.gz
+*.bcf
+*.bam
+*.bai
+*.tbi
+*.csi
+*.bed
+*.bim
+*.fam
+*.ped
+*.map
+*.nosex
+
+# Reference sequences and annotations
+*.fa
+*.fasta
+*.fna
+*.faa
+*.fq
+*.fastq
+*.gff
+*.gff3
+*.gtf
+
+# Figures, Excel, and generic tables (MANIFEST.csv is tracked; do not add *.csv)
+*.png
+*.pdf
+*.xlsx
+*.tsv
+
+# fastsimcoal2 run products (keep analysis/phase3b_fastsimcoal2/models/*.par)
+*.obs
+*.bestlhoods
+
+# Model weights
+*.pt
+*.ckpt
+*.h5
+*.hdf5
+
+# Machine-local analysis root (written by configure_base_dir.sh)
+analysis/base_dir.env
+
+# Temporary
+temp/
+tmp/
+*.log
+nohup.out
+
+# Jupyter
+.ipynb_checkpoints/

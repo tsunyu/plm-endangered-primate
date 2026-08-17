@@ -1,0 +1,13 @@
+# R 4.x — packages actually imported by this repository
+# Install: Rscript analysis/install_r_packages.R
+
+# analysis/utils.R
+yaml
+dplyr
+tidyr
+data.table
+ggplot2
+scales
+
+# phase3a_generate_plots.R and inline plots in phase 3a shell scripts
+patchwork

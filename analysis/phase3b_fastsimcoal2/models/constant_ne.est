@@ -1,0 +1,7 @@
+// Priors file for constant Ne model
+// Issue: this model has 1 parameter to estimate
+[PARAMETERS]
+//#isInt? #name   #dist.#min  #max
+1        NCUR    unif  500    100000   output
+
+[COMPLEX PARAMETERS]

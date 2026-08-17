@@ -1,0 +1,102 @@
+================================================================================
+FASTSIMCOAL2 DEMOGRAPHIC MODELS SUMMARY
+================================================================================
+
+Generated: 2026-01-26
+Species: Rhinopithecus roxellana (Shennongjia population)
+Sample size: 68 diploid individuals (136 chromosomes)
+Generation time: 10 years
+Mutation rate: 1.36×10⁻⁸ per bp per generation
+
+--------------------------------------------------------------------------------
+DEMOGRAPHIC MODELS
+--------------------------------------------------------------------------------
+
+Model: constant_ne
+Parameters: 1
+Files: constant_ne.tpl, constant_ne.est
+Description:
+Null model with constant population size over time.
+Parameters: NCUR (current diploid Ne)
+Use: Baseline for model comparison
+
+--------------------------------------------------------------------------------
+
+Model: single_bottleneck
+Parameters: 5
+Files: single_bottleneck.tpl, single_bottleneck.est
+Description:
+Single bottleneck model: ancestral -> bottleneck -> recovery/current.
+Parameters: NCUR, NBOT, NANC, TRECOVERY (younger), TBOT (older)
+Use: Test one severe bottleneck and subsequent recovery
+
+--------------------------------------------------------------------------------
+
+Model: two_consecutive_bottlenecks
+Parameters: 9
+Files: two_consecutive_bottlenecks.tpl, two_consecutive_bottlenecks.est
+Description:
+Two consecutive bottlenecks caused by independent events.
+Parameters: NCUR, NBOT2, NINTER, NBOT1, NANC, plus 4 ordered times
+Use: Test repeated shrinkage under multiple climate deteriorations
+
+--------------------------------------------------------------------------------
+
+Model: bottleneck_continuous_decline
+Parameters: 7
+Files: bottleneck_continuous_decline.tpl, bottleneck_continuous_decline.est
+Description:
+Bottleneck followed by sustained decline without recovery.
+Parameters: NCUR, NMID, NBOT, NANC, TRECENT, TBOT, TANC
+Use: Test post-bottleneck persistent deterioration
+
+--------------------------------------------------------------------------------
+
+Model: bottleneck_recent_contraction
+Parameters: 7
+Files: bottleneck_recent_contraction.tpl, bottleneck_recent_contraction.est
+Description:
+Ancient bottleneck + short recovery + recent severe contraction.
+Parameters: NCUR, NRECOVER, NBOT, NANC, TRECENT, TRECOVERY_OLD, TBOT_OLD
+Use: Test bottleneck history with recent contraction (~1.3 ka)
+
+--------------------------------------------------------------------------------
+
+Model: complex_multi_event
+Parameters: 9
+Files: complex_multi_event.tpl, complex_multi_event.est
+Description:
+Complex multi-event model with at least 4 time breaks.
+Parameters: NCUR, N1, N2, N3, NANC, T1, T2, T3, T4
+Use: Flexible model for >=3 demographic size changes
+
+--------------------------------------------------------------------------------
+
+TIME CONVERSION
+--------------------------------------------------------------------------------
+
+fastsimcoal2 uses units of GENERATIONS.
+To convert to YEARS: years = generations × 10
+
+Examples:
+  TBOT = 130 generations = 1,300 years ago
+  TBOT = 500 generations = 5,000 years ago
+
+PARAMETER INTERPRETATION
+--------------------------------------------------------------------------------
+
+Ne values:
+  - Reported as diploid effective population size (not census size)
+  - Typically Ne < Nc (census size)
+  - Ne/Nc ratio often 0.1-0.5 for mammals
+
+Likelihood values:
+  - Use MaxEstLhood for best-run selection and AIC comparison
+  - Do not use MaxObsLhood to rank independent optimization runs
+
+Growth rates:
+  - Negative values = population expansion
+  - Positive values = population decline
+  - Rate is per generation
+
+================================================================================

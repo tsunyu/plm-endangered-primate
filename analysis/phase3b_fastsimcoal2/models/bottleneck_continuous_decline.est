@@ -1,0 +1,20 @@
+// Priors file for bottleneck + sustained decline model
+[PARAMETERS]
+//#isInt? #name      #dist.#min  #max
+1        NCUR        unif  200    50000    output
+0        RMID        unif  1.01   5.0      output
+0        RBOT        unif  1.01   5.0      output
+0        RANC        unif  1.01   5.0      output
+1        TRECENT     unif  20     2000     output
+1        GAP_BOT     unif  1      8000     output
+1        GAP_ANC     unif  1      20000    output
+
+[COMPLEX PARAMETERS]
+1 NMID = NCUR*RMID output
+1 NBOT = NMID*RBOT output
+1 NANC = NBOT*RANC output
+1 TBOT = TRECENT + GAP_BOT output
+1 TANC = TBOT + GAP_ANC output
+0 RESIZE_MID = NMID/NCUR output
+0 RESIZE_BOT = NBOT/NMID output
+0 RESIZE_ANC = NANC/NBOT output
